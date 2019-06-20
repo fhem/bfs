@@ -1,5 +1,7 @@
 # BFS - Bundesamt für Strahlenschutz
-Module to fetch gamma radiation data from Bundesamt für Strahlenschutz Online Service
+Module to fetch gamma radiation data from Bundesamt für Strahlenschutz online Service
+
+This Module is officially maintained here!
 
 ## Used branching model
 * Master branch: Production version
