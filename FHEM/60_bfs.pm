@@ -6,7 +6,8 @@
 #  2018 Markus Moises < vorname at nachname . de >
 #  2019 Florian Asche <fhem@florian-asche.de>
 #
-#  This modul provides gamma radiation data from Bundesamt für Strahlenschutz online Service.
+#  This modul provides gamma radiation data from the BFS (Bundesamt 
+#  für Strahlenschutz) Online Service
 #
 #  http://odlinfo.bfs.de/DE/themen/wo-stehen-die-sonden/messstellen-in-deutschland.html#standort
 #
