@@ -64,6 +64,7 @@ update_changed() {
 }
 
 substitute
+create_controlfile
 #add_hooks
 # only create new controls file if FHEM/* is changed
 test "$(git diff --cached --name-only --diff-filter=ACM | grep -c 'FHEM/')" -gt 0 && create_controlfile
