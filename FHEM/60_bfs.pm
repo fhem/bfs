@@ -397,11 +397,6 @@ sub bfs_DbLog_splitFn($) {
          <br>
          Create visible readings for last update times
       </li><br>
-      <li><code>stationRadiation</code>
-         <br>
-         BfS station id to be used for getting radiation data, station id see <br/>
-         <a href="http://odlinfo.bfs.de/DE/themen/wo-stehen-die-sonden/messstellen-in-deutschland.html#standort">odlinfo.bfs.de/messstellen</a>
-      </li><br>
       <li><code>userPassODL</code>
          <br>
          Username and password from BfS, enter it in the format <i>username:password</i><br/>
