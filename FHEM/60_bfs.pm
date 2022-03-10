@@ -4,7 +4,7 @@
 #  60_bfs.pm
 #
 #  2018 Markus Moises < vorname at nachname . de >
-#  2019 Florian Asche <fhem@florian-asche.de>
+#  2020 Florian Asche <fhem@florian-asche.de>
 #
 #  This modul provides gamma radiation data from the BFS (Bundesamt 
 #  für Strahlenschutz) Online Service
@@ -130,8 +130,8 @@ sub bfs_GetUpdateODL($) {
   
   return undef if(!defined(AttrVal($name, "userPassODL", undef)));
   
-  my $url="http://".bfs_decrypt(AttrVal($name, "userPassODL", ''))."@"."odlinfo.bfs.de/daten/json/".$station."ct.json";
-  Log3 ($name, 3, "Getting ODL data with login from URL: http://odlinfo.bfs.de/daten/json/".$station."ct.json");  
+  my $url="http://".bfs_decrypt(AttrVal($name, "userPassODL", ''))."@"."odlinfo2.bfs.de/daten/json/".$station."ct.json";
+  Log3 ($name, 3, "Getting ODL data with login from URL: http://odlinfo2.bfs.de/daten/json/".$station."ct.json");  
 
 
     HttpUtils_NonblockingGet({
@@ -208,14 +208,16 @@ sub bfs_ParseODL($$$) {
   my @ps= (@{$radiationdata->{ps}});
 
   my $lastupdate = ReadingsVal( $name, ".lastUpdateRadiation", 0);
+  Log3 $name, 3, "$name: LastUpdate:".$lastupdate;
   my $timestamp = 0;
   my $received=0;
   
   foreach my $readingstime (@t) {
-    
+    Log3 $name, 3, "$name: DateTime:".$readingstime;
     my ($year,$mon,$day,$hour,$minute) = split(/[^\d]+/, $readingstime);
     $timestamp = timegm(0,$minute,$hour,$day,$mon-1,$year-1900);
-    
+    Log3 $name, 3, "$name: DateTime (timestamp): ".$timestamp;
+
     if($timestamp <= $lastupdate) {
       $i++;
       next;
@@ -391,18 +393,9 @@ sub bfs_DbLog_splitFn($) {
          <br>
          Disables the module
       </li><br>
-      <li><code>pollutants</code>
-         <br>
-         Comma separated list of pollutants to get data for. (default: CO,NO2,O3,PM10,SO2)
-      </li><br>
       <li><code>showTimeReadings</code>
          <br>
          Create visible readings for last update times
-      </li><br>
-      <li><code>stationRadiation</code>
-         <br>
-         BfS station id to be used for getting radiation data, station id see <br/>
-         <a href="http://odlinfo.bfs.de/DE/themen/wo-stehen-die-sonden/messstellen-in-deutschland.html#standort">odlinfo.bfs.de/messstellen</a>
       </li><br>
       <li><code>userPassODL</code>
          <br>
