@@ -130,8 +130,8 @@ sub bfs_GetUpdateODL($) {
   
   return undef if(!defined(AttrVal($name, "userPassODL", undef)));
   
-  my $url="http://".bfs_decrypt(AttrVal($name, "userPassODL", ''))."@"."odlinfo.bfs.de/daten/json/".$station."ct.json";
-  Log3 ($name, 3, "Getting ODL data with login from URL: http://odlinfo.bfs.de/daten/json/".$station."ct.json");  
+  my $url="http://".bfs_decrypt(AttrVal($name, "userPassODL", ''))."@"."odlinfo2.bfs.de/daten/json/".$station."ct.json";
+  Log3 ($name, 3, "Getting ODL data with login from URL: http://odlinfo2.bfs.de/daten/json/".$station."ct.json");  
 
 
     HttpUtils_NonblockingGet({
