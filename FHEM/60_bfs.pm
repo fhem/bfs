@@ -183,7 +183,7 @@ sub bfs_ParseODL($$$) {
   if($@)
   {
     Log3 $name, 2, "$name: JSON evaluation error for ODL ".$@;
- 
+
     if($hash->{STATE} ne "error"){
       RemoveInternalTimer($hash, "bfs_GetUpdateODL");
       InternalTimer(int(gettimeofday()+600), "bfs_GetUpdateODL", $hash, 1);
@@ -201,6 +201,13 @@ sub bfs_ParseODL($$$) {
   my $radiationdata = $json->{mw1h};
 
   my $i=0;
+
+  if (!defined((@{$radiationdata->{t}})) || length((@{$radiationdata->{t}})) == 0 || (@{$radiationdata->{t}}) eq "") {
+    Log3 $name, 2, "$name: JSON evaluation error for ODL ".$@;
+    $hash->{STATE} = "error";
+    return undef;  
+  }
+
   my @t= (@{$radiationdata->{t}});
   my @mw= (@{$radiationdata->{mw}});
   my @ter= (@{$radiationdata->{ter}});
