@@ -202,7 +202,7 @@ sub bfs_ParseODL($$$) {
 
   my $i=0;
 
-  if (!defined((@{$radiationdata->{t}})) || length((@{$radiationdata->{t}})) == 0 || (@{$radiationdata->{t}}) eq "") {
+  if (!defined($radiationdata->{t}) || @{$radiationdata->{t}} == 0) {
     Log3 $name, 2, "$name: JSON evaluation error for ODL ".$@;
     $hash->{STATE} = "error";
     return undef;  
